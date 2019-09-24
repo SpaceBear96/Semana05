@@ -17,7 +17,7 @@ namespace Business
             try
             {
                 DCategoria = new DCategoria();
-                categorias = DCategoria.Listar(new Categoria { IdCategorias = IdCategoria });
+                categorias = DCategoria.Listar(new Categoria { IdCategorias = IdCategoria});
 
             }
             catch (Exception ex)
@@ -70,6 +70,30 @@ namespace Business
                 result = false;
             }
             return result;
+        }
+
+        public int GetMaxId(int IdCategoria)
+        {
+            List<Categoria> categorias = null;
+            var idmax = 0;
+            try
+            {
+                DCategoria = new DCategoria();
+                categorias = DCategoria.Listar(new Categoria { IdCategorias = IdCategoria});
+
+                for (var i = 0; i < categorias.Count; i++)
+                {
+                    if (idmax < categorias[i].IdCategorias)
+                    {
+                        idmax = categorias[i].IdCategorias;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return idmax + 1;
         }
     }
 }

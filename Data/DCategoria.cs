@@ -104,5 +104,35 @@ namespace Data
                 throw ex;
             }
         }
+
+        public int MaxID()
+        {
+            SqlParameter[] parameters = null;
+            string ComandText = string.Empty;
+            int maxid=0;
+            try
+            {
+                ComandText = "USP_GetCategoria";
+                parameters = new SqlParameter[1];
+                parameters[0] = new SqlParameter("@idcategoria", SqlDbType.Int);
+                parameters[0].Value = 0;
+                parameters[1] = new SqlParameter("@activo", SqlDbType.Bit);
+                parameters[1].Value = 0;
+
+                using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.Connection, ComandText, CommandType.StoredProcedure, parameters))
+                {
+
+                    while (reader.NextResult())
+                    {
+                        maxid=maxid+1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return maxid;
+        }
     }
 }

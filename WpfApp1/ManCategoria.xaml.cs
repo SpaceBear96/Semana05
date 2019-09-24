@@ -54,6 +54,36 @@ namespace WpfApp1
                     result = bCategoria.Insertar(new Categoria { NombreCategoria = txtNombre.Text, Descripcion = txtDescripcion.Text });
 
                 if (!result)
+                    MessageBox.Show("Comunicarse TI1");
+
+                Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Comunicarse TI2");
+            }
+            finally
+            {
+                bCategoria = null;
+            }
+        }
+
+        private void BtnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            BCategoria bCategoria = null;
+            bool result = true;
+            try
+            {
+                bCategoria = new BCategoria();
+                if (ID > 0)
+                    result = bCategoria.Eliminar(ID);
+
+                if (!result)
                     MessageBox.Show("Comunicarse TI");
 
                 Close();
@@ -66,11 +96,6 @@ namespace WpfApp1
             {
                 bCategoria = null;
             }
-        }
-
-        private void BtnCerrar_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
     }
 }

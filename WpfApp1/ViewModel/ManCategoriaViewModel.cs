@@ -80,6 +80,7 @@ namespace WpfApp1.ViewModel
                             NombreCategoria = Nombre,
                             Descripcion = Descripcion
                         });
+                    
                 });
             CerrarCommand = new RelayCommand<Window>(
                 param => Cerrar(param)
